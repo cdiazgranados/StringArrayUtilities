@@ -1,5 +1,6 @@
 package com.zipcodewilmington;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**
@@ -88,16 +89,7 @@ public class StringArrayUtils {
     public static boolean isPangramic(String[] array) {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
 
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < array.length; i++) {
-            sb.append(array[i]);
-        }
-
-        String joinedArray = sb.toString();
-        joinedArray = joinedArray.toLowerCase();
-        joinedArray.replaceAll(" ", "");
-
-
+        String joinedArray = Arrays.toString(array).toLowerCase();
 
         for (int i = 0; i < alpha.length(); i++) {
             if (!joinedArray.contains(String.valueOf(alpha.charAt(i)))) {
@@ -106,42 +98,6 @@ public class StringArrayUtils {
         }
 
         return true;
-
-//        String alpha = "abcdefghijklmnopqrstuvwxyz";
-//        String[] sa = alpha.split("");
-//
-//
-//        for (String c : sa) {
-//            for (String f : array) {
-//                if (!f.contains(c)) {
-//                    return false;
-//                }
-//            }
-//
-//        }
-//
-//        return true;
-
-
-//        StringBuffer sb = new StringBuffer();
-//        for(int i = 0; i < array.length; i++) {
-//            sb.append(array[i]);
-//        }
-//        String str = sb.toString();
-//        StringBuilder builderAlpha = new StringBuilder(alpha);
-//
-//        for (int i = 0; i < str.length(); i++) {
-//            for (int j = 0; j < str.length(); j ++) {
-//                if (str.charAt(i) == builderAlpha.charAt(j)) {
-//                    builderAlpha = builderAlpha.deleteCharAt(j);
-//                }
-//            }
-//        }
-//
-//       if (alpha.length() == 0) {
-//           return true;
-//       }
-//        return false;
     }
 
     /**
