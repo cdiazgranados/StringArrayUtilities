@@ -1,6 +1,7 @@
 package com.zipcodewilmington;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -106,7 +107,15 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int count = 0;
+
+        for (String e: array) {
+            if (e.equals(value)) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     /**
@@ -115,15 +124,40 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+
+        ArrayList<String> newArray = new ArrayList<String>();
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != valueToRemove) {
+                newArray.add(array[i]);
+            }
+        }
+
+        String[] rmArray = new String[newArray.size()];
+        rmArray = newArray.toArray(rmArray);
+
+        return rmArray;
     }
 
     /**
      * @param array array of chars
-     * @return array of Strings with consecutive duplicates removes
+     * @return array of Strings with consecutive duplicates removed
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> newArray = new ArrayList<String>();
+
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] != array[i + 1]) {
+                newArray.add(array[i]);
+            }
+        }
+
+        newArray.add(array[array.length - 1]);
+
+        String[] rmArray = new String[newArray.size()];
+        rmArray = newArray.toArray(rmArray);
+
+        return rmArray;
     }
 
     /**
@@ -131,8 +165,20 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+
+        String joinedArray = String.join("", array);
+        String newString = String.valueOf(joinedArray.charAt(0));
+
+        for (int i = 1; i < joinedArray.length(); i++) {
+            if (joinedArray.charAt(i) == joinedArray.charAt(i - 1)) {
+                newString = newString + String.valueOf(joinedArray.charAt(i));
+            }  else {
+                    newString = newString + " " + String.valueOf(joinedArray.charAt(i));
+            }
+        }
+
+        String[] pack = newString.split(" ");
+        System.out.println(pack);
+        return pack;
     }
-
-
 }
